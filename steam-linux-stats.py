@@ -42,6 +42,21 @@ def top_games():
 
         yield (current, peak, title, support_status.value)
 
+def main():
+    supported = 0
+    row = '{:<15} | {:<12} | {:<45} | {:<13}'.format
+
+    print(row('Current Players', 'Peak Players', 'Game Title', 'Linux Support'))
+    print(row('-' * 15, '-' * 12, '-' * 45, '-' * 13))
+    for game in top_games():
+
+        if game[-1] == status.supported.value:
+            supported += 1
+        print(row(*game))
+
+    print('')
+    print('GAMES WITH LINUX SUPPORT: {} out of 100'.format(supported))
+
 if __name__ == '__main__':
     main()
 
